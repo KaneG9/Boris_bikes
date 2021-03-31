@@ -21,5 +21,8 @@ describe DockingStation do
     DockingStation::DEFAULT_CAPACITY.times {subject.dock Bike.new}
     expect {subject.dock(Bike.new)}.to raise_error(RuntimeError, 'Docking station is full')
   end
+  it 'Check capacity can be changed' do
+    expect(DockingStation.new(21).capacity).to eq(21)
+  end
 end
 
