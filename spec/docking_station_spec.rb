@@ -24,5 +24,8 @@ describe DockingStation do
   it 'Check capacity can be changed' do
     expect(DockingStation.new(21).capacity).to eq(21)
   end
+  it 'Checks the default value of capacity' do 
+    expect(DockingStation.new.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+  end
 end
 
