@@ -17,5 +17,9 @@ describe DockingStation do
   it 'Tests if a bike is no bikes are availiable' do
     expect {subject.release_bike}.to raise_error(RuntimeError, "No Bikes Availiable")
   end
+  it 'Produces error if docking station is full' do
+    subject.dock(Bike.new)
+    expect {subject.dock(Bike.new)}.to raise_error(RuntimeError, 'Docking station is full')
+  end
 end
 
