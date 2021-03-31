@@ -12,13 +12,13 @@ describe DockingStation do
   it 'Test if a bike is docked' do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.bike).to eq [bike]
+    expect(subject.bikes).to eq [bike]
   end
   it 'Tests if a bike is no bikes are availiable' do
     expect {subject.release_bike}.to raise_error(RuntimeError, "No Bikes Availiable")
   end
   it 'Produces error if docking station is full' do
-    subject.dock(Bike.new)
+    20.times {subject.dock Bike.new}
     expect {subject.dock(Bike.new)}.to raise_error(RuntimeError, 'Docking station is full')
   end
 end
