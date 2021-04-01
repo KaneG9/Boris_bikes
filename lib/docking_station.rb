@@ -9,13 +9,22 @@ class DockingStation
   end
 
   def release_bike
-    raise RuntimeError, "No Bikes Availiable" if empty? 
-    @bike.pop
+    raise RuntimeError, "No Bikes Availiable" if empty?
+    if @bikes.last.working? == true
+      return @bikes.pop
+    else
+      raise RuntimeError, "The bike is broken"
+    end
   end
 
   def dock(bike)
     raise RuntimeError, "Docking station is full" if full?
     @bikes << bike
+  end
+
+  def broken(broken_bike)
+    broken_bike.working = false
+    @bikes << broken_bike 
   end
   
   private

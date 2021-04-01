@@ -27,5 +27,21 @@ describe DockingStation do
   it 'Checks the default value of capacity' do 
     expect(DockingStation.new.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
   end
+
+  context 'broken bikes' do
+    it 'check if bike test broken method' do
+      expect(subject).to respond_to(:broken)
+    end
+    it 'check if bike is broken' do
+      broken_bike = Bike.new
+      subject.broken(broken_bike)
+      expect(broken_bike.working?).to be false
+    end
+    it 'doesnt release any broken bike' do
+      broken_bike = Bike.new
+      subject.broken(broken_bike)
+      expect{ subject.release_bike }.to raise_error('The bike is broken')
+    end
+   end 
 end
 
